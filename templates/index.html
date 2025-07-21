@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plagiarism Checker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 60px auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: #f9f9f9;
+        }
+
+        button {
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> PDF Plagiarism Checker</h1>
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <label><strong>Upload Suspicious File :</strong></label>
+            <input type="file" name="suspicious_file" accept=".txt,.pdf,.docx,.png,.jpg,.jpeg">
+
+            <label><strong>Upload Source File :</strong></label>
+            <input type="file" name="source_file" accept=".txt,.pdf,.docx,.png,.jpg,.jpeg">
+
+            <button type="submit">Check Plagiarism</button>
+        </form>
+
+        {% if results %}
+        <div class="result">
+            Plagiarism Percentage: {{ results.percentage }}%
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
